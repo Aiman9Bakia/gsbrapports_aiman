@@ -89,5 +89,35 @@ namespace gsbRapports
                 }
             }
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var query = from v in gV1.visiteur where v.id == textBox8.Text
+                            select v;
+                foreach(var v in query)
+                {
+                    v.nom = textBox1.Text;
+                    v.prenom = textBox2.Text;
+                    v.login = textBox3.Text;
+                    v.mdp = textBox4.Text;
+                    v.adresse = textBox5.Text;
+                    v.cp = textBox6.Text;
+                    v.ville = textBox7.Text;
+                    v.dateEmbauche = dateTimePicker1.Value;
+
+                    
+                }
+
+                this.gV1.SaveChanges();
+                MessageBox.Show("Modification validé");
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}");
+            }
+        }
     }
 }
